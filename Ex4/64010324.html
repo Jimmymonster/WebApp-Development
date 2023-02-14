@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div id="maincontainer"></div>
+        <script>
+
+            var h2= document.createElement("h2");
+            h2.innerHTML = "Exercise 04: JavaScript&DOM";
+            document.body.appendChild(h2);
+
+            var btnEventContainer = document.createElement("div");
+            btnEventContainer.style.height= "50px";
+            
+            const w = new Worker("worker.js");
+            
+            var btn= document.createElement("button");
+            btn.innerHTML = "Click me to display Date and Time";
+            btn.onclick= function(){
+                w.postMessage(btn.style.position);
+            };
+            w.onmessage = (e) =>{
+                if(e.data[0]==0){
+                    btn.style.position=e.data[1];
+                    btn.style.top=btn.style.right=e.data[2];
+                }
+                else if(e.data[0]==1){
+                    btn.innerHTML = e.data[1];
+                    btn.style.color = e.data[2];
+                    btn.style.backgroundColor = e.data[3];
+                }
+            }
+            btnEventContainer.appendChild(btn);
+            document.body.appendChild(btnEventContainer);
+
+            var PersonalInfoContainer = document.createElement("div");
+
+            var PersonalInfo = ["Thanapob Parinyarat, ID: 64010324","Subject: Web Application Development","Semester: 2"];
+            var PersonalInfo_ul= document.createElement("ul");
+            var fragment = new DocumentFragment();
+            for(var i of PersonalInfo){
+                var li=document.createElement("li");
+                li.textContent = i;
+                fragment.append(li);
+            }
+            PersonalInfo_ul.append(fragment);
+
+            var PersonalInfoBTN = document.createElement("a");
+            PersonalInfoBTN.innerHTML= "Personal Info";
+            PersonalInfoBTN.href="javascript:void(0);"; //<---- don't know how to deal with herf...
+            PersonalInfoBTN.style.color= "Pink";
+            PersonalInfoBTN.onmouseover = function(){
+                PersonalInfoBTN.style.color = "Blue";
+                PersonalInfoBTN.style.backgroundColor = "Yellow";
+            };
+            PersonalInfoBTN.onmouseleave = function(){
+                PersonalInfoBTN.style.color = "Pink";
+                PersonalInfoBTN.style.backgroundColor = "White";
+            };
+            PersonalInfoBTN.onclick = function(){
+                if(!PersonalInfoContainer.hasChildNodes()){
+                    PersonalInfoContainer.appendChild(PersonalInfo_ul);
+                }
+                else{
+                    PersonalInfoContainer.removeChild(PersonalInfo_ul);
+                }
+            }
+            document.body.appendChild(PersonalInfoBTN);
+            document.body.appendChild(PersonalInfoContainer);
+
+            var h1 = document.createElement("h1");
+            h1.innerHTML = "Snapshots";
+            document.body.appendChild(h1);
+
+            var fragment = new DocumentFragment;
+            var Snapshots_ul = document.createElement("ul");
+            var Snapshots = new Array(4);
+            for(var i=0;i<4;i++){
+                var li = document.createElement("li");
+                Snapshots[i] = document.createElement("a");
+                Snapshots[i].href= "javascript:void(0);";
+                li.appendChild(Snapshots[i]);
+                fragment.append(li);
+            }
+            //Fireworks
+            Snapshots[0].innerHTML="Fireworks";
+            Snapshots[0].onclick = function(){
+                banner_img.setAttribute("src","https://images4.alphacoders.com/938/938936.png");
+                banner_img.width="500";
+                banner_img.width="600";
+            };
+            //Crest
+            Snapshots[1].innerHTML="Crest";
+            Snapshots[1].onclick = function(){
+                banner_img.setAttribute("src","https://cdn.shopify.com/s/files/1/2462/7711/products/095c8844-defc-4f82-ba4b-93885f0a0897_1024x1024@2x.jpg?v=1612360939")
+                banner_img.width="500";
+                banner_img.width="600";
+            };
+            //Action
+            Snapshots[2].innerHTML="Action";
+            Snapshots[2].onclick = function(){
+                banner_img.setAttribute("src","https://www.gamersdecide.com/sites/default/files/styles/news_images/public/genshin-impact-wallpaper-10_1.jpg");
+                banner_img.width="500";
+                banner_img.width="600";
+            };
+            //Buffalo
+            Snapshots[3].innerHTML="Buffalo";
+            Snapshots[3].onclick = function(){
+                banner_img.setAttribute("src","https://cdn.britannica.com/63/145563-050-5E0EC254/water-buffalo.jpg");
+                banner_img.width="500";
+                banner_img.width="600";
+            };
+
+            Snapshots_ul.appendChild(fragment);
+            document.body.appendChild(Snapshots_ul);
+
+            var banner_img = document.createElement("img");
+            banner_img.setAttribute("src","https://s2.glbimg.com/JVTczqpZtwzpPvog--2KpU1xCiQ=/0x0:1980x1080/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2021/9/M/rFI3FxSWAKb8JbDgrUNQ/paimon.jpg");
+            banner_img.width="500";
+            banner_img.width="600";
+            document.body.appendChild(banner_img);
+        </script>
+    </body>
+</html>
