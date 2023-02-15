@@ -4,35 +4,38 @@
     <body>
         <div id="maincontainer"></div>
         <script>
-
-            var h2= document.createElement("h2");
+            var main_container = document.getElementById("maincontainer");
+            
+            var h2 = document.createElement("h2");
             h2.innerHTML = "Exercise 04: JavaScript&DOM";
-            document.body.appendChild(h2);
-
+            main_container.appendChild(h2);
+            //==================== btn  ===========================
             var btnEventContainer = document.createElement("div");
             btnEventContainer.style.height= "50px";
             
-            const w = new Worker("worker.js");
-            
-            var btn= document.createElement("button");
-            btn.innerHTML = "Click me to display Date and Time";
-            btn.onclick= function(){
-                w.postMessage(btn.style.position);
-            };
+            let w = new Worker("worker.js");
             w.onmessage = (e) =>{
-                if(e.data[0]==0){
+                if(e.data[0]==0){ //change pos
                     btn.style.position=e.data[1];
                     btn.style.top=btn.style.right=e.data[2];
                 }
-                else if(e.data[0]==1){
+                else if(e.data[0]==1){ //change col
                     btn.innerHTML = e.data[1];
                     btn.style.color = e.data[2];
                     btn.style.backgroundColor = e.data[3];
                 }
             }
+            
+            var btn= document.createElement("button");
+            btn.innerHTML = "Click me to display Date and Time";
+            btn.onclick= function(){
+                // console.log(w);
+                w.postMessage(btn.style.position);
+            };
+            
             btnEventContainer.appendChild(btn);
-            document.body.appendChild(btnEventContainer);
-
+            main_container.appendChild(btnEventContainer);
+            //================= Personal Info ================================
             var PersonalInfoContainer = document.createElement("div");
 
             var PersonalInfo = ["Thanapob Parinyarat, ID: 64010324","Subject: Web Application Development","Semester: 2"];
@@ -47,7 +50,7 @@
 
             var PersonalInfoBTN = document.createElement("a");
             PersonalInfoBTN.innerHTML= "Personal Info";
-            PersonalInfoBTN.href="javascript:void(0);"; //<---- don't know how to deal with herf...
+            PersonalInfoBTN.href="javascript:void(0);"; //<---- make herf literally do nothing.... 
             PersonalInfoBTN.style.color= "Pink";
             PersonalInfoBTN.onmouseover = function(){
                 PersonalInfoBTN.style.color = "Blue";
@@ -65,13 +68,13 @@
                     PersonalInfoContainer.removeChild(PersonalInfo_ul);
                 }
             }
-            document.body.appendChild(PersonalInfoBTN);
-            document.body.appendChild(PersonalInfoContainer);
-
+            main_container.appendChild(PersonalInfoBTN);
+            main_container.appendChild(PersonalInfoContainer);
+            //===================================================================
             var h1 = document.createElement("h1");
             h1.innerHTML = "Snapshots";
-            document.body.appendChild(h1);
-
+            main_container.appendChild(h1);
+            //===================================================================
             var fragment = new DocumentFragment;
             var Snapshots_ul = document.createElement("ul");
             var Snapshots = new Array(4);
@@ -86,6 +89,7 @@
             Snapshots[0].innerHTML="Fireworks";
             Snapshots[0].onclick = function(){
                 banner_img.setAttribute("src","https://images4.alphacoders.com/938/938936.png");
+                banner_img.setAttribute("alt","Fireworks");
                 banner_img.width="500";
                 banner_img.width="600";
             };
@@ -93,6 +97,7 @@
             Snapshots[1].innerHTML="Crest";
             Snapshots[1].onclick = function(){
                 banner_img.setAttribute("src","https://cdn.shopify.com/s/files/1/2462/7711/products/095c8844-defc-4f82-ba4b-93885f0a0897_1024x1024@2x.jpg?v=1612360939")
+                banner_img.setAttribute("alt","Crest");
                 banner_img.width="500";
                 banner_img.width="600";
             };
@@ -100,6 +105,7 @@
             Snapshots[2].innerHTML="Action";
             Snapshots[2].onclick = function(){
                 banner_img.setAttribute("src","https://www.gamersdecide.com/sites/default/files/styles/news_images/public/genshin-impact-wallpaper-10_1.jpg");
+                banner_img.setAttribute("alt","Action");
                 banner_img.width="500";
                 banner_img.width="600";
             };
@@ -107,18 +113,20 @@
             Snapshots[3].innerHTML="Buffalo";
             Snapshots[3].onclick = function(){
                 banner_img.setAttribute("src","https://cdn.britannica.com/63/145563-050-5E0EC254/water-buffalo.jpg");
+                banner_img.setAttribute("alt","Buffalo");
                 banner_img.width="500";
                 banner_img.width="600";
             };
 
             Snapshots_ul.appendChild(fragment);
-            document.body.appendChild(Snapshots_ul);
+            main_container.appendChild(Snapshots_ul);
 
             var banner_img = document.createElement("img");
             banner_img.setAttribute("src","https://s2.glbimg.com/JVTczqpZtwzpPvog--2KpU1xCiQ=/0x0:1980x1080/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2021/9/M/rFI3FxSWAKb8JbDgrUNQ/paimon.jpg");
+            banner_img.setAttribute("alt","Paimon and Traveler");
             banner_img.width="500";
             banner_img.width="600";
-            document.body.appendChild(banner_img);
+            main_container.appendChild(banner_img);
         </script>
     </body>
 </html>
