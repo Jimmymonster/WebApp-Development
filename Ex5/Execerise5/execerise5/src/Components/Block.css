@@ -1,0 +1,50 @@
+.Container {
+  background-color: #fffdd0;
+  color: black;
+  width: 60%;
+  border: 2px solid black;
+  border-radius: 20px 20px 20px 20px;
+  text-align: left;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.Foodtype {
+  font-size: calc(2vw);
+  font-weight: bold;
+}
+.Foodname {
+  font-size: calc(1.2vw);
+  font-weight: bold;
+}
+.Description {
+  font-size: calc(1.2vw);
+  text-align: left;
+  width: 65%;
+}
+.Image {
+  width: 35%;
+  float: right;
+}
+.btnContainer {
+  height: 15%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.score {
+  border: 2px solid black;
+  border-radius: 10px 10px 10px 10px;
+  background-color: #66ff00;
+  color: #4b0082;
+  font-weight: bold;
+  padding: 10px;
+  margin: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: calc(10px + 1vw);
+}
+.btn {
+  padding: 10px;
+}
