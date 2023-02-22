@@ -1,6 +1,6 @@
 import "./App.css";
-import "./Block.js";
-import Block from "./Block.js";
+import "./Components/Block.js";
+import Block from "./Components/Block.js";
 
 function App() {
   return (
